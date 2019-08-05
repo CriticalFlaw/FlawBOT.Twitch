@@ -1,0 +1,7 @@
+{
+  "prefix": ".",
+  "twitch_client": "BOT CLIENT ID",
+  "twitch_username": "BOT USERNAME",
+  "twitch_oauth": "CHAT OAUTH TOKEN",
+  "twitch_channel": "CHANNEL TO JOIN"
+}
