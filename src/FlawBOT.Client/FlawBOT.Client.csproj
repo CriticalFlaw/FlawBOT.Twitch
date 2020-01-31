@@ -19,8 +19,4 @@
     <PackageReference Include="TwitchLib" Version="3.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FlawBOT.Service\FlawBOT.Service.csproj" />
-  </ItemGroup>
-
 </Project>

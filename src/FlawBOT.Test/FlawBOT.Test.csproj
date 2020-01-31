@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FlawBOT-Twitch\FlawBOT.Client.csproj" />
-    <ProjectReference Include="..\FlawBOT.Service\FlawBOT.Service.csproj" />
+    <ProjectReference Include="..\FlawBOT.Client\FlawBOT.Client.csproj" />
   </ItemGroup>
 
 </Project>
