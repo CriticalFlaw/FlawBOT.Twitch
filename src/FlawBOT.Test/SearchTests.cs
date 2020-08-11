@@ -8,38 +8,24 @@ namespace FlawBOT.Test
 {
     public class SearchTests
     {
-        private User channel;
-        private TwitchAPI service;
-
-        [SetUp]
-        public void Setup()
-        {
-            TokenService.LoadTokenList();
-            service = new TwitchAPI();
-            service.Settings.ClientId = TokenService.Tokens.ClientID;
-            service.Settings.AccessToken = TokenService.Tokens.AccessToken;
-            service.Settings.Secret = TokenService.Tokens.ClientSecret;
-            channel = TwitchService.GetUserByNameAsync(service).Result.Matches[0];
-        }
-
         [Test]
         public async Task SearchChannels()
         {
-            var results = await TwitchService.SearchChannelsAsync(service, "criticalflaw_").ConfigureAwait(false);
+            var results = await APIService.SearchChannelsAsync(Setup.Service, "criticalflaw_").ConfigureAwait(false);
             Assert.IsNotNull(results.Channels);
         }
 
         [Test]
         public async Task SearchGames()
         {
-            var results = await TwitchService.SearchGamesAsync(service, "Team Fortress 2").ConfigureAwait(false);
+            var results = await APIService.SearchGamesAsync(Setup.Service, "Team Fortress 2").ConfigureAwait(false);
             Assert.IsNotNull(results.Games);
         }
 
         [Test]
         public async Task SearchStreams()
         {
-            var results = await TwitchService.SearchStreamsAsync(service, "criticalflaw_").ConfigureAwait(false);
+            var results = await APIService.SearchStreamsAsync(Setup.Service, "criticalflaw_").ConfigureAwait(false);
             Assert.IsNotNull(results.Streams);
         }
     }

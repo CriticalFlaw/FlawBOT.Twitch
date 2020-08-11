@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FlawBOT.Core.Services;
 using TwitchLib.Api;
 using TwitchLib.Api.V5.Models.Channels;
 using TwitchLib.Api.V5.Models.Chat;
@@ -12,7 +13,7 @@ using TwitchLib.Api.V5.Models.Users;
 
 namespace FlawBOT.Service
 {
-    public static class TwitchService
+    public static class APIService
     {
         #region CHANNEL
 
@@ -298,7 +299,7 @@ namespace FlawBOT.Service
 
         public static async Task<Users> GetUserByNameAsync(TwitchAPI service)
         {
-            var results = await service.V5.Users.GetUserByNameAsync(TokenService.Tokens.ChannelName).ConfigureAwait(false);
+            var results = await service.V5.Users.GetUserByNameAsync(TokenHandler.Tokens.ChannelName).ConfigureAwait(false);
             return results;
         }
 

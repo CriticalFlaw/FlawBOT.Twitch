@@ -1,9 +1,9 @@
 {
-  "twitch_client": "null",
-  "twitch_secret": "null",
-  "twitch_channel": "null",
   "bot_username": "null",
+  "bot_oauth": "null",
   "bot_access": "null",
   "bot_refresh": "null",
-  "bot_oauth": "null"
+  "twitch_channel": "null",
+  "twitch_client": "null",
+  "twitch_secret": "null"
 }

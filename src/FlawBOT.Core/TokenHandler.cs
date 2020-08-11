@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 
-namespace FlawBOT.Service
+namespace FlawBOT.Core.Services
 {
-    public static class TokenService
+    public static class TokenHandler
     {
         public static TokenData Tokens { get; set; } = new TokenData();
 
@@ -17,17 +19,11 @@ namespace FlawBOT.Service
 
     public class TokenData
     {
-        [JsonProperty("twitch_client")]
-        public string ClientID { get; set; }
-
-        [JsonProperty("twitch_secret")]
-        public string ClientSecret { get; set; }
-
-        [JsonProperty("twitch_channel")]
-        public string ChannelName { get; set; }
-
         [JsonProperty("bot_username")]
         public string BotUsername { get; set; }
+
+        [JsonProperty("bot_oauth")]
+        public string OAuth { get; set; }
 
         [JsonProperty("bot_access")]
         public string AccessToken { get; set; }
@@ -35,7 +31,13 @@ namespace FlawBOT.Service
         [JsonProperty("bot_refresh")]
         public string RefreshToken { get; set; }
 
-        [JsonProperty("bot_oauth")]
-        public string OAuth { get; set; }
+        [JsonProperty("twitch_channel")]
+        public string ChannelName { get; set; }
+
+        [JsonProperty("twitch_client")]
+        public string ClientId { get; set; }
+
+        [JsonProperty("twitch_secret")]
+        public string ClientSecret { get; set; }
     }
 }

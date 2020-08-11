@@ -1,31 +1,16 @@
+using System.Threading.Tasks;
 using FlawBOT.Service;
 using NUnit.Framework;
-using System.Threading.Tasks;
-using TwitchLib.Api;
-using TwitchLib.Api.V5.Models.Users;
 
 namespace FlawBOT.Test
 {
     public class ChannelTests
     {
-        private User channel;
-        private TwitchAPI service;
-
-        [SetUp]
-        public void Setup()
-        {
-            TokenService.LoadTokenList();
-            service = new TwitchAPI();
-            service.Settings.ClientId = TokenService.Tokens.ClientID;
-            service.Settings.AccessToken = TokenService.Tokens.AccessToken;
-            service.Settings.Secret = TokenService.Tokens.ClientSecret;
-            channel = TwitchService.GetUserByNameAsync(service).Result.Matches[0];
-        }
-
         [Test]
         public async Task CheckChannelSubscriptionByUser()
         {
-            var results = await TwitchService.CheckChannelSubscriptionByUserAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.CheckChannelSubscriptionByUserAsync(Setup.Service, Setup.Channel)
+                .ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
@@ -35,7 +20,7 @@ namespace FlawBOT.Test
         {
             try
             {
-                await TwitchService.DeleteChannelFromCommunityAsync(service, channel).ConfigureAwait(false);
+                await APIService.DeleteChannelFromCommunityAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
                 Assert.Pass();
             }
             catch
@@ -47,77 +32,79 @@ namespace FlawBOT.Test
         [Test]
         public async Task GetAllFollowers()
         {
-            var results = await TwitchService.GetAllFollowersAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetAllFollowersAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
         [Test]
         public async Task GetAllSubscribers()
         {
-            var results = await TwitchService.GetAllSubscribersAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetAllSubscribersAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
         [Test]
         public async Task GetChannel()
         {
-            var results = await TwitchService.GetChannelAsync(service).ConfigureAwait(false);
+            var results = await APIService.GetChannelAsync(Setup.Service).ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
         [Test]
-        public async Task GetChannelByID()
+        public async Task GetChannelById()
         {
-            var results = await TwitchService.GetChannelByIDAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetChannelByIDAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
         [Test]
         public async Task GetChannelCommunities()
         {
-            var results = await TwitchService.GetChannelCommunitiesAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetChannelCommunitiesAsync(Setup.Service, Setup.Channel)
+                .ConfigureAwait(false);
             Assert.IsNotNull(results.Communities);
         }
 
         [Test]
         public async Task GetChannelCommunity()
         {
-            var results = await TwitchService.GetChannelCommunityAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetChannelCommunityAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
         [Test]
         public async Task GetChannelEditors()
         {
-            var results = await TwitchService.GetChannelEditorsAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetChannelEditorsAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
             Assert.IsNotNull(results.Editors);
         }
 
         [Test]
         public async Task GetChannelFollowers()
         {
-            var results = await TwitchService.GetChannelFollowersAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetChannelFollowersAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
         [Test]
         public async Task GetChannelSubscribers()
         {
-            var results = await TwitchService.GetChannelSubscribersAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetChannelSubscribersAsync(Setup.Service, Setup.Channel)
+                .ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
         [Test]
         public async Task GetChannelTeams()
         {
-            var results = await TwitchService.GetChannelTeamsAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetChannelTeamsAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
             Assert.IsNotNull(results.Teams);
         }
 
         [Test]
         public async Task GetChannelVideos()
         {
-            var results = await TwitchService.GetChannelVideosAsync(service, channel).ConfigureAwait(false);
+            var results = await APIService.GetChannelVideosAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
             Assert.IsNotNull(results);
         }
 
@@ -127,7 +114,7 @@ namespace FlawBOT.Test
         {
             try
             {
-                await TwitchService.ResetChannelStreamKeyAsync(service, channel).ConfigureAwait(false);
+                await APIService.ResetChannelStreamKeyAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
                 Assert.Pass();
             }
             catch
@@ -142,7 +129,7 @@ namespace FlawBOT.Test
         {
             try
             {
-                await TwitchService.SetChannelCommunitiesAsync(service, channel).ConfigureAwait(false);
+                await APIService.SetChannelCommunitiesAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
                 Assert.Pass();
             }
             catch
@@ -156,7 +143,7 @@ namespace FlawBOT.Test
         {
             try
             {
-                await TwitchService.StartChannelCommercialAsync(service, channel).ConfigureAwait(false);
+                await APIService.StartChannelCommercialAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
                 Assert.Pass();
             }
             catch
@@ -170,7 +157,7 @@ namespace FlawBOT.Test
         {
             try
             {
-                await TwitchService.UpdateChannelAsync(service, channel).ConfigureAwait(false);
+                await APIService.UpdateChannelAsync(Setup.Service, Setup.Channel).ConfigureAwait(false);
                 Assert.Pass();
             }
             catch
